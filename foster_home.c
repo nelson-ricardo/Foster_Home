@@ -39,40 +39,12 @@ int main() {
     };
 
     for(int i = 0; i < numOfCages; i++) {
-        for(int i = 0; i < 3; i++) {
-            FosterFamily currentFam = FamilyArray[i];
-
-            // adds the suffix to the cat name if the current family has the cat
-            if(currentFam.hasCat) {
-
-                char newKittyName[strlen(arrayOfKitties[currentFam.currentCage]) + 3];
-                strcpy(newKittyName, arrayOfKitties[currentFam.currentCage]);
-                arrayOfKitties[currentFam.currentCage] = strcat(newKittyName, currentFam.suffix);
-
-            }
-
-            currentFam.currentCage = ((currentFam.currentCage + currentFam.numCagesFwd) % numOfCages) - 1;
-
-            int newOwnership = 0;
-
-            // ownership check for each family
-            if(i == 0) { 
-                kittyOwnershipTest(currentFam, FamilyArray[1], FamilyArray[2], &newOwnership);
-            }
-            else if(i == 1) {
-                kittyOwnershipTest(currentFam, FamilyArray[0], FamilyArray[2], &newOwnership);
-            }
-            else {
-                kittyOwnershipTest(currentFam, FamilyArray[0], FamilyArray[1], &newOwnership);
-            }
-
-            currentFam.hasCat = newOwnership;
-        }
+        
     }
-    // TODO - move the index of the family one at a time (done, not tested)
-    // TODO - wrap currentCage index everytime a family has reached the end of the array (done, not tested)
-    // TODO - update the name of the kitty to add the suffix (done, not tested)
-    // TODO - add logic to verify that the cat is not taken by someone else (done, not tested)
+    // TODO - move the index of the family one at a time
+    // TODO - wrap currentCage index everytime a family has reached the end of the array 
+    // TODO - update the name of the kitty to add the suffix 
+    // TODO - add logic to verify that the cat is not taken by someone else 
 
 
     printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
@@ -106,25 +78,6 @@ void printKittyCages(char* array[], FosterFamily familyArray[3], int size) {
             printf("%s\n", noCatText);
         } else {
             printf("%s\n", array[i]);
-        }
-    }
-}
-
-void kittyOwnershipTest(FosterFamily currentFam, FosterFamily famToCheck1, FosterFamily famToCheck2, int* newVal) {
-    if(currentFam.currentCage == famToCheck1.currentCage) {
-        if(famToCheck1.hasCat) {
-            *newVal = 0;
-        }
-        else {
-            *newVal = 1;
-        }
-    }
-    if(currentFam.currentCage == famToCheck2.currentCage) {
-        if(famToCheck2.hasCat) {
-            *newVal = 0;
-        }
-        else {
-            *newVal = 1;
         }
     }
 }
