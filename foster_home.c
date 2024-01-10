@@ -10,6 +10,7 @@ typedef struct {
 } FosterFamily;
 
 int addKitties(char* array[], int numIndex);
+int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2);
 
 int main() {
     int numOfCages, numOfWeeks;
@@ -54,6 +55,17 @@ int main() {
             }
             
             FamilyArray[j].currentCage = (currentCage + FamilyArray[j].numCagesFwd) % numOfCages;
+
+            // verify if the current family will get ownership of the new kitty
+            if(j == 0) {
+                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[2]);
+            }
+            else if(j == 1) {
+                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[0], FamilyArray[2]);
+            }
+            else {
+                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[0]);
+            }
         }
     }
 
@@ -80,3 +92,6 @@ int addKitties(char* array[], int numIndex) {
     return 0;
 }
 
+int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2) {
+    return 0;
+}
