@@ -38,23 +38,22 @@ int main() {
 
     for(int i = 1; i < numOfWeeks; i++) {
         for(int j = 0; j < 3; j++) {
+
+            int currentCage = FamilyArray[j].currentCage;
             
             // add the suffix of the family to the cat's name if the family has the cat
             if(FamilyArray[j].hasCat) {
-                int currentKitty = FamilyArray[j].currentCage;
 
-                char newCatName[strlen(arrayOfKitties[currentKitty] + 3)];
+                char newCatName[strlen(arrayOfKitties[currentCage] + 3)];
 
-                strcpy(newCatName, arrayOfKitties[currentKitty]);
+                strcpy(newCatName, arrayOfKitties[currentCage]);
 
-                arrayOfKitties[currentKitty] = strcat(newCatName, FamilyArray[j].suffix);
+                arrayOfKitties[currentCage] = strcat(newCatName, FamilyArray[j].suffix);
 
                 printf("%s\n", arrayOfKitties[FamilyArray[j].currentCage]);
             }
             
-
-            int famCurrentCage = FamilyArray[j].currentCage;
-            FamilyArray[j].currentCage = (famCurrentCage + FamilyArray[j].numCagesFwd) % numOfCages;
+            FamilyArray[j].currentCage = (currentCage + FamilyArray[j].numCagesFwd) % numOfCages;
         }
     }
 
