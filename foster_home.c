@@ -18,7 +18,7 @@ int main() {
 
     scanf("%d %d\n", &numOfCages, &numOfWeeks); //gets the number of cages and number of weeks
 
-    //TODO - check that numOfCages is between 3 an 500 and that numOfWeeks is between 1 and 500
+    //TODO: check that numOfCages is between 3 an 500 and that numOfWeeks is between 1 and 500
     if((numOfCages < 3 || numOfCages > 500) || (numOfWeeks < 1 || numOfWeeks > 500)) {
         return 1;
     }
@@ -43,10 +43,10 @@ int main() {
             FamilyArray[j].currentCage = (famCurrentCage + FamilyArray[j].numCagesFwd) % numOfCages;
         }
     }
-    // TODO - move the index of the family one at a time
-    // TODO - wrap currentCage index everytime a family has reached the end of the array 
-    // TODO - update the name of the kitty to add the suffix 
-    // TODO - add logic to verify that the cat is not taken by someone else 
+    // TODO:  move the index of the family one at a time
+    // TODO: wrap currentCage index everytime a family has reached the end of the array 
+    // TODO: update the name of the kitty to add the suffix 
+    // TODO: add logic to verify that the cat is not taken by someone else 
 
     return 0;
 }
@@ -57,7 +57,7 @@ int addKitties(char* array[], int numIndex) {
 
     for(int i = 0; i < numIndex; i++) {
         char* tempKitty = malloc(sizeof(char*));
-        // TODO - add logic to not allow a name longer than 19 characters
+        // TODO: add logic to not allow a name longer than 19 characters
         scanf("%s", tempKitty);
 
         if(strlen(tempKitty) > 19) {
