@@ -37,10 +37,10 @@ int main() {
     };
 
     for(int i = 0; i < numOfWeeks; i++) {
-        for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
 
-            int famCurrentCage = FamilyArray[i].currentCage;
-            FamilyArray[i].currentCage = (famCurrentCage + FamilyArray[i].numCagesFwd) % numOfCages;
+            int famCurrentCage = FamilyArray[j].currentCage;
+            FamilyArray[j].currentCage = (famCurrentCage + FamilyArray[j].numCagesFwd) % numOfCages;
         }
     }
     // TODO - move the index of the family one at a time
