@@ -48,9 +48,6 @@ int main() {
     // TODO - update the name of the kitty to add the suffix 
     // TODO - add logic to verify that the cat is not taken by someone else 
 
-
-    printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
-
     return 0;
 }
 
