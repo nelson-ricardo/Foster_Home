@@ -70,6 +70,8 @@ int main() {
 
     // TODO: add logic to verify that the cat is not taken by someone else 
 
+    printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
+    
     return 0;
 }
 
