@@ -44,7 +44,7 @@ int main() {
             // add the suffix of the family to the cat's name if the family has the cat
             if(FamilyArray[j].hasCat) {
 
-                char newCatName[strlen(arrayOfKitties[currentCage] + 3)];
+                char *newCatName = (char* ) calloc(strlen(arrayOfKitties[currentCage]) + 3, sizeof(char));
 
                 strcpy(newCatName, arrayOfKitties[currentCage]);
 
@@ -57,7 +57,6 @@ int main() {
         }
     }
 
-    // TODO: update the name of the kitty to add the suffix 
     // TODO: add logic to verify that the cat is not taken by someone else 
 
     return 0;
