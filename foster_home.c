@@ -36,7 +36,7 @@ int main() {
             {"Eve", 2, 5, 1}  // family3
     };
 
-    for(int i = 0; i < numOfWeeks; i++) {
+    for(int i = 1; i < numOfWeeks; i++) {
         for(int j = 0; j < 3; j++) {
 
             int famCurrentCage = FamilyArray[j].currentCage;
