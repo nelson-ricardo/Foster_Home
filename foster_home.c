@@ -43,8 +43,7 @@ int main() {
             FamilyArray[j].currentCage = (famCurrentCage + FamilyArray[j].numCagesFwd) % numOfCages;
         }
     }
-    // TODO:  move the index of the family one at a time
-    // TODO: wrap currentCage index everytime a family has reached the end of the array 
+    
     // TODO: update the name of the kitty to add the suffix 
     // TODO: add logic to verify that the cat is not taken by someone else 
 
