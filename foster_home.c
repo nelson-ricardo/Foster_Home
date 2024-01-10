@@ -50,8 +50,6 @@ int main() {
                 strcpy(newCatName, arrayOfKitties[currentCage]);
 
                 arrayOfKitties[currentCage] = strcat(newCatName, FamilyArray[j].suffix);
-
-                printf("%s\n", arrayOfKitties[FamilyArray[j].currentCage]);
             }
             
             FamilyArray[j].currentCage = (currentCage + FamilyArray[j].numCagesFwd) % numOfCages;
@@ -93,5 +91,16 @@ int addKitties(char* array[], int numIndex) {
 }
 
 int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2) {
-    return 0;
+    // checks if we are on the same cage and then checks if the other family has the cat. 
+    if(newFamily.currentCage == otherFam1.currentCage) {
+        if(otherFam1.hasCat) {
+            return 0;
+        }
+    } else if(newFamily.currentCage == otherFam2.currentCage) {
+        if(otherFam2.hasCat) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
