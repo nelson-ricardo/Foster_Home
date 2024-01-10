@@ -39,7 +39,11 @@ int main() {
     };
 
     for(int i = 0; i < numOfCages; i++) {
-        
+        for(int i = 0; i < 3; i++) {
+            
+            int famCurrentCage = FamilyArray[i].currentCage;
+            FamilyArray[i].currentCage = (famCurrentCage + FamilyArray[i].numCagesFwd) % numOfCages;
+        }
     }
     // TODO - move the index of the family one at a time
     // TODO - wrap currentCage index everytime a family has reached the end of the array 
