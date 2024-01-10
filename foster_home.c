@@ -10,8 +10,6 @@ typedef struct {
 } FosterFamily;
 
 int addKitties(char* array[], int numIndex);
-void printKittyCages(char* array[], FosterFamily familyArray[3], int size);
-void kittyOwnershipTest(FosterFamily currentFam, FosterFamily famToCheck1, FosterFamily famToCheck2, int* newVal);
 
 int main() {
     int numOfCages, numOfWeeks;
@@ -38,9 +36,9 @@ int main() {
             {"Eve", 2, 5, 1}  // family3
     };
 
-    for(int i = 0; i < numOfCages; i++) {
+    for(int i = 0; i < numOfWeeks; i++) {
         for(int i = 0; i < 3; i++) {
-            
+
             int famCurrentCage = FamilyArray[i].currentCage;
             FamilyArray[i].currentCage = (famCurrentCage + FamilyArray[i].numCagesFwd) % numOfCages;
         }
@@ -63,7 +61,7 @@ int addKitties(char* array[], int numIndex) {
     for(int i = 0; i < numIndex; i++) {
         char* tempKitty = malloc(sizeof(char*));
         // TODO - add logic to not allow a name longer than 19 characters
-        gets(tempKitty);
+        scanf("%s", tempKitty);
 
         if(strlen(tempKitty) > 19) {
             return 1;
@@ -74,14 +72,3 @@ int addKitties(char* array[], int numIndex) {
     return 0;
 }
 
-void printKittyCages(char* array[], FosterFamily familyArray[3], int size) {
-    char* noCatText = "No cat found.";
-
-    for(int i = 0; i < size; i++) {
-        if(familyArray[0].currentCage == i || familyArray[1].currentCage == i || familyArray[2].currentCage == i) {
-            printf("%s\n", noCatText);
-        } else {
-            printf("%s\n", array[i]);
-        }
-    }
-}
