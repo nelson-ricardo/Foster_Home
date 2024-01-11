@@ -66,9 +66,7 @@ int main() {
                 FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[0]);
             }
         }
-    }
-
-    // TODO: add logic to verify that the cat is not taken by someone else 
+    } 
 
     printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
 
@@ -109,7 +107,40 @@ int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFami
 }
 
 void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages) {
+    int numberOfOwnedKitties = 0, currentIndex = 0;
+
+    // get the number of kitties in the foster homes
+    for(int i = 0; i < 3; i++) {
+        if(families[i].hasCat) {
+            numberOfOwnedKitties++;
+        }
+    }
+
+    // make an array of indexes of the kitties in the foster homes
+    int ownedKittiesPosition[numberOfOwnedKitties];
+
+    for(int i = 0; i < 3; i++) {
+        if(families[i].hasCat) {
+            ownedKittiesPosition[currentIndex] = families[i].currentCage;
+            currentIndex++;
+        }
+    }
+    
+    // print the cages that have kitties
     for(int i = 0; i < numOfCages; i++) {
-        printf("%s\n", kittyCages[i]);
+        int found = 0;
+
+        for(int j = 0; j < numberOfOwnedKitties; j++) {
+            if(ownedKittiesPosition[j] == i) {
+                found = 1;
+                break;
+            }
+        }
+
+        if(found) {
+            printf("No cat found.\n");
+        } else {
+            printf("%s\n", kittyCages[i]);
+        }
     }
 }
