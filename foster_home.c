@@ -11,7 +11,7 @@ typedef struct {
 
 int addKitties(char* array[], int numIndex);
 int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2);
-void printKittyCages(char* kittyCages, FosterFamily families[], int numOfCages);
+void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages);
 
 int main() {
     int numOfCages, numOfWeeks;
@@ -71,7 +71,7 @@ int main() {
     // TODO: add logic to verify that the cat is not taken by someone else 
 
     printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
-    
+
     return 0;
 }
 
@@ -108,37 +108,8 @@ int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFami
     return 1;
 }
 
-void printKittyCages(char* kittyCages, FosterFamily families[], int numOfCages) {
-    int numberOfOwnedCats, currentArrayIndex = 0;
-    
-    for(int i = 0; i < 3; i++) {
-        if(families[i].hasCat) {
-            numberOfOwnedCats++;
-        }
-    }
-
-    int cagesTaken[numberOfOwnedCats];
-
-    for(int i = 0; i < 3; i++) {
-        if(families[i].hasCat) {
-            cagesTaken[currentArrayIndex] = families[i].currentCage;
-            currentArrayIndex++;
-        }
-    }
-
+void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages) {
     for(int i = 0; i < numOfCages; i++) {
-        int foundFlag = 0;
-
-        for(int j = 0; j < numberOfOwnedCats; j++) {
-            if(cagesTaken[j] == i) {
-                foundFlag = 1;
-                printf("No cat found.");
-                break;
-            }
-        }
-
-        if(!foundFlag) {
-            printf("%s\n", kittyCages[i]);
-        }
+        printf("%s\n", kittyCages[i]);
     }
 }
