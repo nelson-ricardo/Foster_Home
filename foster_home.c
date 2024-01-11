@@ -9,9 +9,9 @@ typedef struct {
     int hasCat;         // 1 for true, 0 for false
 } FosterFamily;
 
-int addKitties(char* array[], int numIndex);
-int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2);
-void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages);
+int addCats(char* array[], int numIndex);
+int getCatOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2);
+void printCatCages(char* catCages[], FosterFamily families[], int numOfCages);
 
 int main() {
     int numOfCages, numOfWeeks;
@@ -22,9 +22,9 @@ int main() {
         return 1;
     }
 
-    char* arrayOfKitties[numOfCages];
+    char* catArray[numOfCages];
 
-    int completeFlag = addKitties(arrayOfKitties, numOfCages);
+    int completeFlag = addCats(catArray, numOfCages);
 
     if(completeFlag) return 1; // stops the program if the cat's name is longer than 19
 
@@ -43,52 +43,52 @@ int main() {
             // add the suffix of the family to the cat's name if the family has the cat
             if(FamilyArray[j].hasCat) {
 
-                char *newCatName = (char* ) calloc(strlen(arrayOfKitties[currentCage]) + 3, sizeof(char));
+                char *newCatName = (char* ) calloc(strlen(catArray[currentCage]) + 3, sizeof(char));
 
-                strcpy(newCatName, arrayOfKitties[currentCage]);
+                strcpy(newCatName, catArray[currentCage]);
 
-                arrayOfKitties[currentCage] = strcat(newCatName, FamilyArray[j].suffix);
+                catArray[currentCage] = strcat(newCatName, FamilyArray[j].suffix);
             }
             
             FamilyArray[j].currentCage = (currentCage + FamilyArray[j].numCagesFwd) % numOfCages;
 
             // verify if the current family will get ownership of the new kitty
             if(j == 0) {
-                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[2]);
+                FamilyArray[j].hasCat = getCatOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[2]);
             }
             else if(j == 1) {
-                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[0], FamilyArray[2]);
+                FamilyArray[j].hasCat = getCatOwnership(FamilyArray[j], FamilyArray[0], FamilyArray[2]);
             }
             else {
-                FamilyArray[j].hasCat = getKittyOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[0]);
+                FamilyArray[j].hasCat = getCatOwnership(FamilyArray[j], FamilyArray[1], FamilyArray[0]);
             }
         }
     } 
 
-    printKittyCages(arrayOfKitties, FamilyArray, numOfCages);
+    printCatCages(catArray, FamilyArray, numOfCages);
 
     return 0;
 }
 
 
-int addKitties(char* array[], int numIndex) {
+int addCats(char* array[], int numIndex) {
 
 
     for(int i = 0; i < numIndex; i++) {
-        char* tempKitty = malloc(sizeof(char*));
+        char* tempCat = malloc(sizeof(char*));
         
-        scanf("%s", tempKitty);
+        scanf("%s", tempCat);
 
-        if(strlen(tempKitty) > 19) {
+        if(strlen(tempCat) > 19) {
             return 1;
         }
-        array[i] = tempKitty;
+        array[i] = tempCat;
     }
 
     return 0;
 }
 
-int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2) {
+int getCatOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2) {
     // checks if we are on the same cage and then checks if the other family has the cat. 
     if(newFamily.currentCage == otherFam1.currentCage) {
         if(otherFam1.hasCat) {
@@ -103,22 +103,22 @@ int getKittyOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFami
     return 1;
 }
 
-void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages) {
-    int numberOfOwnedKitties = 0, currentIndex = 0;
+void printCatCages(char* catCages[], FosterFamily families[], int numOfCages) {
+    int numberOfOwnedCats = 0, currentIndex = 0;
 
     // get the number of kitties in the foster homes
     for(int i = 0; i < 3; i++) {
         if(families[i].hasCat) {
-            numberOfOwnedKitties++;
+            numberOfOwnedCats++;
         }
     }
 
     // make an array of indexes of the kitties in the foster homes
-    int ownedKittiesPosition[numberOfOwnedKitties];
+    int ownedCatsPosition[numberOfOwnedCats];
 
     for(int i = 0; i < 3; i++) {
         if(families[i].hasCat) {
-            ownedKittiesPosition[currentIndex] = families[i].currentCage;
+            ownedCatsPosition[currentIndex] = families[i].currentCage;
             currentIndex++;
         }
     }
@@ -127,8 +127,8 @@ void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages
     for(int i = 0; i < numOfCages; i++) {
         int found = 0;
 
-        for(int j = 0; j < numberOfOwnedKitties; j++) {
-            if(ownedKittiesPosition[j] == i) {
+        for(int j = 0; j < numberOfOwnedCats; j++) {
+            if(ownedCatsPosition[j] == i) {
                 found = 1;
                 break;
             }
@@ -137,7 +137,7 @@ void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages
         if(found) {
             printf("No cat found.\n");
         } else {
-            printf("%s\n", kittyCages[i]);
+            printf("%s\n", catCages[i]);
         }
     }
 }
