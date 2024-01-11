@@ -16,11 +16,8 @@ void printKittyCages(char* kittyCages[], FosterFamily families[], int numOfCages
 int main() {
     int numOfCages, numOfWeeks;
 
-    char buffer;
+    scanf("%d %d", &numOfCages, &numOfWeeks); //gets the number of cages and number of weeks
 
-    scanf("%d %d\n", &numOfCages, &numOfWeeks); //gets the number of cages and number of weeks
-
-    //TODO: check that numOfCages is between 3 an 500 and that numOfWeeks is between 1 and 500
     if((numOfCages < 3 || numOfCages > 500) || (numOfWeeks < 1 || numOfWeeks > 500)) {
         return 1;
     }
@@ -79,7 +76,7 @@ int addKitties(char* array[], int numIndex) {
 
     for(int i = 0; i < numIndex; i++) {
         char* tempKitty = malloc(sizeof(char*));
-        // TODO: add logic to not allow a name longer than 19 characters
+        
         scanf("%s", tempKitty);
 
         if(strlen(tempKitty) > 19) {
