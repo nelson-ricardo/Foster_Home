@@ -19,10 +19,6 @@ int main() {
 
     scanf("%d %d", &numOfCages, &numOfWeeks); //gets the number of cages and number of weeks
 
-    if((numOfCages < 3 || numOfCages > 500) || (numOfWeeks < 1 || numOfWeeks > 500)) {
-        return 1;
-    }
-
     char* catArray[numOfCages];
 
     int completeFlag = addCats(catArray, numOfCages);
@@ -82,9 +78,6 @@ int addCats(char* array[], int numIndex) {
         
         scanf("%s", tempCat);
 
-        if(strlen(tempCat) > 19) {
-            return 1;
-        }
         array[i] = tempCat;
     }
 
