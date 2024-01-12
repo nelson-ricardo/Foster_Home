@@ -12,6 +12,7 @@ typedef struct {
 int addCats(char* array[], int numIndex);
 int getCatOwnership(FosterFamily newFamily, FosterFamily otherFam1, FosterFamily otherFam2);
 void printCatCages(char* catCages[], FosterFamily families[], int numOfCages);
+void freeCatArray(char* cats[], int size);
 
 int main() {
     int numOfCages, numOfWeeks;
@@ -42,12 +43,12 @@ int main() {
             
             // add the suffix of the family to the cat's name if the family has the cat
             if(FamilyArray[j].hasCat) {
+                
+                int newStrLen = strlen(catArray[currentCage]) + 3;
 
-                char *newCatName = (char* ) calloc(strlen(catArray[currentCage]) + 3, sizeof(char));
+                catArray[currentCage] = realloc(catArray[currentCage], newStrLen * sizeof(char));
 
-                strcpy(newCatName, catArray[currentCage]);
-
-                catArray[currentCage] = strcat(newCatName, FamilyArray[j].suffix);
+                strcat(catArray[currentCage], FamilyArray[j].suffix);
             }
             
             FamilyArray[j].currentCage = (currentCage + FamilyArray[j].numCagesFwd) % numOfCages;
@@ -66,6 +67,8 @@ int main() {
     } 
 
     printCatCages(catArray, FamilyArray, numOfCages);
+
+    freeCatArray(catArray, numOfCages);
 
     return 0;
 }
@@ -139,5 +142,11 @@ void printCatCages(char* catCages[], FosterFamily families[], int numOfCages) {
         } else {
             printf("%s\n", catCages[i]);
         }
+    }
+}
+
+void freeCatArray(char* cats[], int size) {
+    for(int i = 0; i < size; i++) {
+        free(cats[i]);
     }
 }
