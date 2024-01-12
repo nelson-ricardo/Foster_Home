@@ -23,8 +23,6 @@ int main() {
 
     int completeFlag = addCats(catArray, numOfCages);
 
-    if(completeFlag) return 1; // stops the program if the cat's name is longer than 19
-
 
     FosterFamily FamilyArray[3] = {
             {"Lee", 0, 2, 1}, // family1
