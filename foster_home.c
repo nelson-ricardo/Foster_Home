@@ -72,7 +72,7 @@ int addCats(char* array[], int numIndex) {
 
 
     for(int i = 0; i < numIndex; i++) {
-        char* tempCat = malloc(sizeof(char*));
+        char* tempCat = (char *) malloc(sizeof(char*));
         
         scanf("%s", tempCat);
 
